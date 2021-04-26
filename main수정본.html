@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main수정본.css">
+    <script src="https://kit.fontawesome.com/a216194d9c.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <span>
+                <a href="#">
+                    <div class="title">#인생 맛집</div>
+                </a>
+            </span>
+            <span><a href="#" class="logout" onclick=removeCheck()>Sign Out <i
+                        class="fas fa-sign-out-alt"></i></a></span>
+            <input type="text" placeholder='"안양에서 인생 맛집을 찾아보세요"' onfocus="this.placeholder=''"
+                onblur='this.placeholder="\"안양에서 인생 맛집을 찾아보세요\""'>
+            <div class="message">"홍길동님, 무엇을 찾고 계신가요?"</div>
+            <span><a href="#" class="search"><i class="fas fa-search"></i></a></span>
+        </div>
+    </header>
+    <nav>
+        <div class="food">
+            <div class="fo">
+                <a href="#" class="menu">
+                    <span>Korean Food</span>
+                    <img src="image/koreafood.PNG" alt="한국음식">
+                </a>
+                <a href="#" class="menu">
+                    <span>Chinese Food</span>
+                    <img src="image/chinesefood.PNG" alt="중국음식">
+                </a>
+            </div>
+            <div class="fo">
+                <a href="#" class="menu">
+                    <span>Japanes Food</span>
+                    <img src="image/japanesefood.PNG" alt="일본음식">
+                </a>
+                <a href="#" class="menu">
+                    <span>Western Food</span>
+                    <img src="image/westernfood.PNG" alt="서양음식">
+                </a>
+            </div>
+        </div>
+        </div>
+    </nav>
+    <section>
+        <div class="todaymenu">오늘의 메뉴!!</div>
+        <div class="todayimg">
+            <a href="#"><img src="image/todaymenu.jpg" alt="" class="todaymenuimg"></a>
+            <a href="javascript:void(0);" class="right" onclick="nextSlide()"><i
+                    class="fas fa-chevron-circle-right"></i></a>
+            <a href="javascript:void(0);" class="left" onclick="prevSlide()"><i
+                    class="fas fa-chevron-circle-left"></i></a>
+        </div>
+    </section>
+    <script src="https://kit.fontawesome.com/a216194d9c.js" crossorigin="anonymous"></script>
+    <script>
+        // 알럿창
+        function removeCheck() {
+            if (confirm('로그아웃 하시겠습니까?') === true) {
+            }
+            else {
+                return false;
+            }
+        }
+
+        // 오늘의 메뉴 이미지 슬라이드
+        const todaymenu = document.querySelector(".todaymenuimg");
+        let todaymenuArray = ["image/todaymenu.jpg", "image/todaymenu1.jpg", "image/todaymenu2.jpg", "image/todaymenu3.jpg"];
+        let todaymenuIndex = 0;
+
+        function nextSlide() {
+            //setAttribute는 요소의 속성값을 넣습니다.(속성이름, 속성값)을 넣습니다.
+            //즉 img의 src를 todaymenuIndex에서 가져와라 라는 뜻
+            // 참고자료(https://www.youtube.com/watch?v=Sw8aD1GZzzA)
+            todaymenu.setAttribute("src", todaymenuArray[todaymenuIndex]);
+            todaymenuIndex++;
+            if (todaymenuIndex >= todaymenuArray.length) {
+                todaymenuIndex = 0;
+            }
+        }
+
+        // 방법을 찾아야 함...
+        function prevSlide() {
+
+            if (todaymenuIndex === 0) {
+                todaymenu.setAttribute("src", todaymenuArray[todaymenuArray.length - 1]);
+                todaymenuIndex = todaymenuArray.length - 1;
+            }
+            else {
+                todaymenuIndex--;
+                todaymenu.setAttribute("src", todaymenuArray[todaymenuIndex]);
+
+            }
+
+        }
+
+        setInterval(nextSlide, 3000);
+
+    </script>
+</body>
+
+</html>
